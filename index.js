@@ -96,9 +96,6 @@ app.use((err, req, res, next) => {
     res.status(status).render("expenses/error.ejs", { message });
 });
 
-app.get("/", (req, res) => {
-    res.send("working route");
-});
 
 app.listen(8080, () => {
     console.log("Listening on port 8080");

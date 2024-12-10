@@ -20,9 +20,9 @@ const Mongostore=require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const localStrategy = require("passport-local");
-
+const DB_URL=process.env.ATLASDB_URL;
 // Mongoose connectivity
-const mongoUrl = "mongodb://127.0.0.1:27017/expenses";
+
 
 main().then(() => {
     console.log("Connected to DB");
@@ -31,7 +31,7 @@ main().then(() => {
 });
 
 async function main() {
-    await mongoose.connect(mongoUrl);
+    await mongoose.connect(DB_URL);
 }
 
 //Important Middleware For Functioning
@@ -42,9 +42,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
+const store=Mongostore.create({
+    mongoUrl:DB_URL,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24 * 3600,
+});
+store.on("error" , () => {
+    console.log("Error In Mongo Session",err);
+})
 
 const sessionOption = {
-    // store:store,
+    store:store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,

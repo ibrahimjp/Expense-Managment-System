@@ -1,0 +1,81 @@
+<% layout("layouts/boilerplate") %>
+<div class="row">
+  <div class="col-8 offset-2">
+    <h2 class="mb-4 mt-3">Edit Your Expense</h2>
+
+    <form
+      method="POST"
+      action="/expenses/<%= expense._id %>?_method=PUT"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="text"
+          value="<%= expense.name %>"
+          name="expense[name]"
+          class="form-control"
+          id="name"
+          required
+        />
+        <div class="invalid-feedback">Please Enter a Valid Name</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="to" class="form-label">To</label>
+        <input
+          type="text"
+          value="<%= expense.to %>"
+          name="expense[to]"
+          class="form-control"
+          id="to"
+          required
+        />
+        <div class="invalid-feedback">Please Enter a Valid To Field</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+          type="text"
+          value="<%= expense.phoneNumber %>"
+          name="expense[phoneNumber]"
+          class="form-control"
+          id="phoneNumber"
+          required
+        />
+        <div class="invalid-feedback">Please Enter a Valid Phone Number</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="expenses" class="form-label">Expense Amount</label>
+        <input
+          type="number"
+          value="<%= expense.expenses %>"
+          name="expense[expenses]"
+          class="form-control"
+          id="expenses"
+          required
+        />
+        <div class="invalid-feedback">Please Enter a Valid Expense Amount</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          name="expense[description]"
+          class="form-control"
+          id="description"
+          required
+        >
+          <%= expense.description %>
+        </textarea>
+        <div class="invalid-feedback">Please Enter a Valid Description</div>
+      </div>
+
+      <button class="btn btn-dark edit-btn mt-3">Save Changes</button>
+    </form>
+  </div>
+</div>

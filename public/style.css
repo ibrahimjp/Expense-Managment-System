@@ -1,0 +1,347 @@
+:root {
+    --primary-color: #3a6ea5;
+    --secondary-color: #4ecdc4;
+    --background-light: #f4f4f4;
+    --text-dark: #333;
+    --text-muted: #666;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --font-size-base: clamp(16px, 1vw + 1rem, 22px);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: var(--font-size-base);
+}
+
+
+/* Navbar Styling */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 1rem 2rem;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: transform var(--transition-speed);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.nav-link {
+    color: var(--text-dark);
+    position: relative;
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: var(--primary-color);
+    transition: all var(--transition-speed) ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+
+
+.container{
+    flex: 1;
+}
+
+.nav-bar{
+    height: 5rem;
+}
+
+.fa-wallet{
+    color: #6b3a20;
+    font-size: 2rem;
+    margin-right: 60px;
+}
+footer {
+    background-color: #f2f2f2; /* Light grey background to match the example */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.f-info {
+    display: flex;
+    flex-direction: column; /* Stack items in a column */
+    align-items: center;
+    gap: 10px; /* Space between each row */
+    font-size: 14px;
+    color: #333; /* Dark color for text */
+}
+
+.f-infosocial {
+    margin-bottom: 10px; /* Space below social icons */
+}
+
+.f-infosocial i {
+    margin: 0 5px;
+    font-size: 20px; /* Adjust icon size */
+    opacity: 0.7;
+}
+.f-infosocial i:hover{
+    opacity: 1;
+}
+
+.f-company {
+    margin: 10px 0; /* Space around company name */
+}
+
+.f-infolinks a {
+    color: #007bff; /* Blue color for links */
+    margin: 0 5px; /* Space between Privacy and Terms links */
+    text-decoration: none;
+}
+
+.f-infolinks a:hover {
+    text-decoration: underline;
+}
+
+.f-anchor{
+    color: #222222;
+}
+/* cards */
+
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all var(--transition-speed);
+    margin-bottom: 20px;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    object-fit: cover;
+    height: 250px;
+}
+.listing-link{
+    text-decoration: none;    
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.5;
+    background-color: white;
+}
+
+/* Form Styling */
+.form-control {
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 12px 15px;
+    transition: all var(--transition-speed);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(58, 110, 165, 0.25);
+}
+
+
+
+
+.row {
+    margin-top: 1rem;
+}
+
+.col {
+    padding: 0.5rem;
+}
+
+.edit-btn{
+    background-color: #fe434d !important;
+    border: none !important;
+}
+/* show Route  */
+.btns {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.btn {
+    padding: 8px 0;
+}
+.btns{
+    display: flex;
+}
+/* Button Styling */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    transition: all var(--transition-speed);
+}
+
+.btn-primary:hover {
+    background-color: darken(var(--primary-color), 10%);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.show-card{
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.show-card {
+    padding: 0;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.show-img {
+    height: 40vh;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-text {
+    margin-bottom: 0.5rem;
+}
+
+
+.card-title {
+    margin-bottom: 1rem;
+}
+
+
+  /* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .nav-link {
+        text-align: center;
+    }
+}
+/* Utility Classes */
+.text-muted {
+    color: var(--text-muted);
+}
+
+.shadow-hover {
+    transition: box-shadow var(--transition-speed);
+}
+
+.shadow-hover:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+  /* Filters Section */
+  .filters {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter:hover {
+    background-color: #f1f1f1;
+    border-color: #aaa;
+  }
+  
+  .filter i {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .filter p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+
+  .listing-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .listing-card {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Ensures images scale proportionally */
+  }
+  
+  .card-body {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+  }
+  
+  .card-text b {
+    font-size: 1.2rem;
+    color: #333;
+  }

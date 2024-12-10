@@ -1,0 +1,44 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row mt-3">
+  <h3 class="col-6 offset-3">Add New Expense</h3>
+  <div class="col-6 offset-3">
+    <form action="/expenses" method="POST" novalidate class="needs-validation">
+      <div class="mb-3">
+        <label for="name" class="form-label">Expense Name</label>
+        <input type="text" name="expense[name]" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="to" class="form-label">To</label>
+        <input type="text" name="expense[to]" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+          type="text"
+          name="expense[phoneNumber]"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="expenses" class="form-label">Amount</label>
+        <input
+          type="number"
+          name="expense[expenses]"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          name="expense[description]"
+          class="form-control"
+          required
+        ></textarea>
+      </div>
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>

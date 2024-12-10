@@ -1,0 +1,94 @@
+<% layout("layouts/boilerplate") %>
+<%
+  const colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark'];
+  const namePersonMap = new Map();
+
+  // Loop through expenses to calculate totals
+  for (const expense of expenses) {
+    if (namePersonMap.has(expense.name) && saveName === expense.from) {
+      namePersonMap.set(expense.name, namePersonMap.get(expense.name) + expense.expenses);
+    } else {
+      namePersonMap.set(expense.name, expense.expenses);
+    }
+  }
+
+  const entries = Array.from(namePersonMap.entries());
+%>
+
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Expense List</h1>
+
+  <!-- Button to Show Dues -->
+  <div class="text-center mb-4">
+    <button onclick="showDues()" class="btn btn-dark">Show Dues</button>
+  </div>
+
+  <!-- Display Total for Each Person -->
+  <div class="mb-4" id="duesContainer" style="display: none; border: 2px solid #6c757d; border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <% 
+      for (let [name, total] of entries) { 
+        if (saveName !== name) {
+          const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+    %>
+      <h6><strong>Total Due Of <%= capitalizedName %>:</strong> ₹<%= total %></h6>
+    <% }} %>
+  </div>
+  <!-- Immediate Expense Section -->
+  <div class="text-center mt-4">
+    <button onclick="toggleExpenseForm()" class="btn btn-info">Add Immediate Expense</button>
+  </div>
+  <div id="expenseForm" style="display: none;">
+    <h4 class="mt-4">Immediate Expense</h4>
+    <form action="/expenses/add-expense" method="POST">
+      <input type="hidden" name="name" value="<%= saveName %>">
+      <div class="mb-3">
+        <label for="expenseAmount" class="form-label">Expense Amount</label>
+        <input type="number" class="form-control" id="expenseAmount" name="expenses" required>
+      </div>
+      <div class="mb-3">
+        <label for="expenseTo" class="form-label">To Whom</label>
+        <input type="text" class="form-control" id="expenseTo" name="to" required>
+      </div>
+      <input type="hidden" name="phoneNumber" value="1234567890">
+      <input type="hidden" name="description" value="The User Doesn't Provide The Description">
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+  <div class="row">
+    <% 
+      for (let i = 0; i < expenses.length; i++) { 
+        const expense = expenses[i]; 
+        const color = colors[i % colors.length];
+    %>
+      <div class="col-md-3 mt-3">
+        <div class="card text-bg-<%= color %> mb-3" style="max-width: 18rem;">
+          <div class="card-header">Expense Details</div>
+          <div class="card-body">
+            <h5 class="card-title"><%= expense.name.charAt(0).toUpperCase() + expense.name.slice(1) %></h5>
+            <p class="card-text"><strong>To:</strong> <%= expense.to %></p>
+            <p class="card-text"><strong>Phone:</strong> <%= expense.phoneNumber %></p>
+            <p class="card-text"><strong>Amount:</strong> ₹<%= expense.expenses %></p>
+            <p class="card-text"><strong>Description:</strong> <%= expense.description %></p>
+            <button class="btn btn-light">
+              <a class="listing-link" href="/expenses/<%= expense._id %>">Show</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+
+<script>
+  function showDues() {
+    const duesContainer = document.getElementById("duesContainer");
+    duesContainer.style.display = duesContainer.style.display === "none" ? "block" : "none";
+  }
+
+  function toggleExpenseForm() {
+    const expenseForm = document.getElementById("expenseForm");
+    expenseForm.style.display = expenseForm.style.display === "none" ? "block" : "none";
+  }
+</script>
